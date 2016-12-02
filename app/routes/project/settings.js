@@ -11,6 +11,10 @@ export default Route.extend(AuthenticatedRouteMixin, CanMixin, {
   credentials: service(),
   session: service(),
 
+  model() {
+    return this.modelFor('project').reload();
+  },
+
   beforeModel() {
     if (this.get('session.isAuthenticated')) {
       let organization = this.modelFor('project.organization');
